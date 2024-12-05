@@ -7,9 +7,9 @@
 	<groupId>io.github.jsuper1980</groupId>
 	<artifactId>sqlgenerator</artifactId>
 	<version>0.0.1</version>
-
 	<name>SQLGenerator</name>
 	<description>结构化 SQL 生成器</description>
+	<url>https://github.com/jsuper1980/sqlgenerator</url>
 
 	<licenses>
 		<license>
@@ -20,7 +20,7 @@
 
 	<developers>
 		<developer>
-			<name>J²</name>
+			<name>jsuper1980</name>
 			<email>jsuper1980@msn.com</email>
 		</developer>
 	</developers>
@@ -44,11 +44,67 @@
 		</dependency>
 	</dependencies>
 
+	<scm>
+		<tag>main</tag>
+		<url>git@github.com:jsuper1980/sqlgenerator.git</url>
+		<connection>git@github.com:jsuper1980/sqlgenerator.git</connection>
+		<developerConnection>git@github.com:jsuper1980/sqlgenerator.git</developerConnection>
+	</scm>
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.central</groupId>
+				<artifactId>central-publishing-maven-plugin</artifactId>
+				<version>0.6.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<publishingServerId>central</publishingServerId>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
